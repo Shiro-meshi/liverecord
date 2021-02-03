@@ -1,4 +1,6 @@
 ## 功能介绍
+record_srms.sh是修改后的自动录播脚本，修改了一些问题，并且可以将录制的.ts文件转为.mp4文件，但目前仅用于录制Mea的各类直播，录制其他人的直播请继续使用lovezzzxxx发布的record_new.sh
+
 record_new.sh为自动录播脚本  
   * 支持youtube频道、twitcast频道、twitch频道、openrec频道、niconico生放送、niconico社区、niconico频道、mirrativ频道、reality频道、17live频道、chaturbate频道、bilibili频道、streamlink支持的直播网址、ffmpeg支持的m3u8地址
   * 其中youtube支持cookies录制，niconico支持登录账号录制，bilibili支持cookies录制与代理
@@ -6,7 +8,7 @@ record_new.sh为自动录播脚本
   * 支持rclone、onedrive与baidupcs上传并根据上传情况清理本地文件  
 
 install.sh为一键安装脚本
-  * 目前仅在ubuntu18.04与19.10系统测试过，理论上较新的linux系统应该都可以使用(centos系统把apt替换为yum应该就行了)  
+  * 目前仅在ubuntu18.04/19.10/20.04系统测试过，理论上较新的linux系统应该都可以使用(centos系统把apt替换为yum应该就行了)  
 
 record_twitcast.py是录制twitcast的websocket流的精简脚本
 
