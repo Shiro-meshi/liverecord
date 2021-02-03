@@ -399,7 +399,7 @@ function uploadto(){
 		fi
 		if [[ $TYPE == "onedrive" ]]; then
 			print "upload -s ${FILE} -r ${DIR}"
-			LOG=$(OneDriveUploader -c "/4T/record/auth.json" -s "$FILE" -r "$DIR")
+			LOG=$(OneDriveUploader -c "record/auth.json" -s "$FILE" -r "$DIR")
 			LOG=$?; [[ $LOG == 0 ]] && STATUS=1
 		fi
 		if [[ $TYPE == "onedrive" ]]; then
