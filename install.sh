@@ -22,8 +22,8 @@ go get github.com/gorilla/websocket ; go get golang.org/x/crypto/sha3 ; go get g
 git clone https://github.com/railannad/livedl.git ; cd livedl ; go build src/livedl.go ; rm -r `ls | grep -v "^livedl$"` ; cd .. #编译安装livedl
 
 #安装java相关下载工具
-apt -y install default-jre
-apt -y install unzip
+sudo apt -y install default-jre
+sudo apt -y install unzip
 mkdir BilibiliLiveRecorder ; cd BilibiliLiveRecorder ; wget https://github.com/nICEnnnnnnnLee/BilibiliLiveRecorder/releases/download/V2.13.0/BilibiliLiveRecord.v2.13.0.zip ; unzip BilibiliLiveRecord.v2.13.0.zip ; rm BilibiliLiveRecord.v2.13.0.zip ; cd ..
 
 #下载文件并赋予权限
