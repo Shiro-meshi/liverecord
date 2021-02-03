@@ -16,10 +16,10 @@ record_twitcast.py是录制twitcast的websocket流的精简脚本
 
 ## 安装方法
 #### 一键安装
-`curl https://raw.githubusercontent.com/lovezzzxxx/liverecord/master/install.sh | bash`  
-  * __一键脚本安装后脚本调用方式应为`record/record_new.sh`而非下文示例中的`./record_new.sh`__
+`curl https://raw.githubusercontent.com/shiro-meshi/liverecord/master/install.sh | bash`  
+  * __一键脚本安装后脚本调用方式应为`record/record_new.sh`或`record/record_srms.sh`而非下文示例中的`./record_new.sh`__
   * 一键脚本将会自动安装下列所有环境依赖， __同时会覆盖安装go环境并添加一些环境变量__ ，如果有需要可以注释掉相应的命令或者手动安装环境依赖
-  * 其中record.sh、record_new.sh和record_twitcast.py会保存于运行时命令行所在目录的record文件夹下，livedl会保存于运行时命令行所在目录的livedl文件夹下， BilibiliLiveRecorder会解压到运行时命令行所在目录的BilibiliLiveRecorder文件夹下
+  * 其中record.sh、record_new.sh、record_srms.sh和record_twitcast.py会保存于运行时命令行所在目录的record文件夹下，livedl会保存于运行时命令行所在目录的livedl文件夹下， BilibiliLiveRecorder会解压到运行时命令行所在目录的BilibiliLiveRecorder文件夹下
   * 一键脚本运行结束后会提示仍需要手动进行的操作，如更新环境变量和登录网盘账号  
 
 #### 手动安装
@@ -27,7 +27,7 @@ record_twitcast.py是录制twitcast的websocket流的精简脚本
 <details>
 <summary>环境依赖</summary>
 
-  * 自动录播脚本，安装方法为`mkdir record ; wget -O "record/record_new.sh" "https://github.com/lovezzzxxx/liverecord/raw/master/record_new.sh" ; chmod +x record/record_new.sh`
+  * 自动录播脚本，安装方法为`mkdir record ; wget -O "record/record_srms.sh" "https://github.com/shiro-meshi/liverecord/raw/master/record_srms.sh" ; chmod +x record/record_srms.sh`
   * [ffmpeg](https://github.com/FFmpeg/FFmpeg)，安装方法为`sudo apt install ffmpeg`。
   * [streamlink](https://github.com/streamlink/streamlink)(基于python3)，安装方法为`pip3 install streamlink`。
   * [livedl](https://github.com/railannad/livedl)(基于go，原项目[himananiito/livedl](https://github.com/himananiito/livedl)已失效)，具体编译安装方法可以参考作者的说明， __请将编译完成的livedl文件放置于运行时命令行所在目录的livedl/文件夹内__ 。否则无法使用twitcast、nicolv、nicoco、nicoch参数。
@@ -42,17 +42,17 @@ record_twitcast.py是录制twitcast的websocket流的精简脚本
 
 ## 使用方法
 #### 方法
-`./record_new.sh [-参数 值] 频道类型 频道号码`
+`./record_srms.sh [-参数 值] 频道类型 频道号码`
 
 #### 示例
   * 使用默认参数录制https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw  
-`./record_new.sh youtube "UCWCc8tO-uUl_7SJXIKJACMw"`  
+`./record_srms.sh youtube "UCWCc8tO-uUl_7SJXIKJACMw"`  
 
-  * 使用ffmpeg录制https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw ，使用record/you-cookies.txt中的cookeis检测youtube直播 使用record/you-config.txt中的配置录制youtube直播，依次获取1080p 720p 480p 360p worst中第一个可用的清晰度，间隔30秒检测，录像保存于record_video/mea文件夹中并在录制完成后自动上传到rclone中名称为vps的网盘的record目录中如果出错重试3次 和百度云网盘用户lovezzzxxx的record_video目录中如果出错则重试2次，如果其中有1个上传成功则删除本地录像  
-`./record.sh youtubeffmpeg "UCWCc8tO-uUl_7SJXIKJACMw" --you-cookies "record/you-cookies.txt" --you-config "record/you-config.txt"  -f 1080p,720p,480p,360p,worst -l 30 -o "record_video/mea" -u rclone3:vps:record -u baidupcs2:lovezzzxxx:record_video -dt 1`  
+  * 使用ffmpeg录制https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw ，使用record/you-cookies.txt中的cookeis检测youtube直播 使用record/you-config.txt中的配置录制youtube直播，依次获取1080p 720p 480p 360p worst中第一个可用的清晰度，间隔30秒检测，录像保存于record_video/mea文件夹中并在录制完成后自动上传到rclone中名称为vps的网盘的record目录中如果出错重试3次 和Onedrive网盘的record_video目录中如果出错则重试2次，如果其中有1个上传成功则删除本地录像  
+`./record_srms.sh youtubeffmpeg "UCWCc8tO-uUl_7SJXIKJACMw" --you-cookies "record/you-cookies.txt" --you-config "record/you-config.txt"  -f 1080p,720p,480p,360p,worst -l 30 -o "record_video/mea" -u rclone3:vps:record -u onedrive::record_video -dt 1`  
 
-  * 将上述命令后台运行，并将输出打印到record_log/meaqua_mea_youtube.log文件中  
-`nohup ./record.sh youtubeffmpeg "UCWCc8tO-uUl_7SJXIKJACMw" --you-cookies "record/you-cookies.txt" --you-config "record/you-config.txt"  -f 1080p,720p,480p,360p,worst -l 30 -o "record_video/mea" -u rclone3:vps:record -u baidupcs2:lovezzzxxx:record_video -dt 1 > record_log/meaqua_mea_youtube.log &`
+  * 将上述命令后台运行，并将输出打印到record_log/mea_youtube.log文件中  
+`nohup ./record_srms.sh youtubeffmpeg "UCWCc8tO-uUl_7SJXIKJACMw" --you-cookies "record/you-cookies.txt" --you-config "record/you-config.txt"  -f 1080p,720p,480p,360p,worst -l 30 -o "record_video/mea" -u rclone3:vps:record -u onedrive::record_video -dt 1 > record_log/mea_youtube.log &`
 
 #### 参数说明
 参数|默认值|说明
