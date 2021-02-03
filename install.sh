@@ -28,9 +28,10 @@ mkdir BilibiliLiveRecorder ; cd BilibiliLiveRecorder ; wget https://github.com/n
 
 #下载文件并赋予权限
 mkdir record
-wget -O "record/record.sh" "https://raw.githubusercontent.com/lovezzzxxx/liverecord/master/record.sh" ; chmod +x record/record.sh
-wget -O "record/record_new.sh" "https://raw.githubusercontent.com/lovezzzxxx/liverecord/master/record_new.sh" ; chmod +x record/record_new.sh
-wget -O "record/record_twitcast.py" "https://raw.githubusercontent.com/lovezzzxxx/liverecord/master/record_twitcast.py" ; chmod +x "record/record_twitcast.py"
+wget -O "record/record.sh" "https://raw.githubusercontent.com/shiro-meshi/liverecord/master/record.sh" ; chmod +x record/record.sh
+wget -O "record/record_new.sh" "https://raw.githubusercontent.com/shiro-meshi/liverecord/master/record_new.sh" ; chmod +x record/record_new.sh
+wget -O "record/record_srms.sh" "https://raw.githubusercontent.com/shiro-meshi/liverecord/master/record_srms.sh" ; chmod +x record/record_srms.sh
+wget -O "record/record_twitcast.py" "https://raw.githubusercontent.com/shiro-meshi/liverecord/master/record_twitcast.py" ; chmod +x "record/record_twitcast.py"
 
 #配置自动上传
 curl https://rclone.org/install.sh | bash #配置rclone自动上传
